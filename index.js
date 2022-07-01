@@ -25,6 +25,13 @@ async function run() {
             const tasks = await tasksCollention.find({}).toArray()
             res.send(tasks)
         });
+        app.get('/get-task/:id', async (req, res) => {
+            const { id } = req.params;
+            const filter = { _id: ObjectId(id) }
+            const tasks = await tasksCollention.findOne(filter)
+            console.log(tasks)
+            res.send(tasks)
+        });
 
         app.post('/add-task', async (req, res) => {
             const data = req.body
@@ -33,7 +40,7 @@ async function run() {
             res.send(result)
         })
 
-        app.put('/update-task/id', async (req, res) => {
+        app.put('/update-task/:id', async (req, res) => {
             const { id } = req.params
             const data = req.body
             const filter = { _id: ObjectId(id) }
