@@ -40,7 +40,7 @@ async function run() {
             res.send(result)
         })
 
-        app.put('/update-task/:id', async (req, res) => {
+        app.put('/edit-task/:id', async (req, res) => {
             const { id } = req.params
             const data = req.body
             const filter = { _id: ObjectId(id) }
